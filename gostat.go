@@ -11,7 +11,7 @@ import (
 	"math/big"
 	rand "math/rand"
 	"sort"
-	"strconv"
+	// "strconv"
 )
 
 func Mean_int(a []int) float64 {
@@ -93,6 +93,16 @@ func Factorial_log_rmnj(n int) float64 {
 //  STAT FUNCTIONS
 //
 
+// Returns a random int in [0,n[
+func RandTo(n int) (int64, error) {
+	maxi := int64(math.MaxInt64)
+	nBig, err := crand.Int(crand.Reader, big.NewInt(maxi))
+	if err != nil {
+		return -1, err
+	}
+	return nBig.Int64() % int64(n), nil
+}
+
 func Unif() float64 {
 	var unif float64 = 0.5
 	maxi := int64(math.MaxInt64)
@@ -153,7 +163,8 @@ func Sample_int(data []int, num int, replace bool) ([]int, error) {
 	} else {
 		/* With replacement */
 		for i := 0; i < num; i++ {
-			output[i] = data[rand.Intn(len(data))]
+			r, _ := RandTo(len(data))
+			output[i] = data[r]
 		}
 	}
 	return output, nil
@@ -305,13 +316,14 @@ func main() {
 	copy(tmp, a)
 	sort.Ints(tmp)
 
-	for i := 0; i < 100; i++ {
-		fmt.Println(rand.Intn(2))
+	for i := 0; i < 10000000; i++ {
+		r, _ := RandTo(2000)
+		fmt.Println(r)
 	}
-	fmt.Println(Qnorm(0.002, 0, 1))
-	fmt.Println(Pnorm(1))
+	// fmt.Println(Qnorm(0.002, 0, 1))
+	// fmt.Println(Pnorm(1))
 
-	for i := 0; i < 1000; i++ {
-		fmt.Println(strconv.Itoa(i) + ": " + strconv.FormatFloat(Log_fact(i), 'f', 20, 64) + " | " + strconv.FormatFloat(Factorial_log_rmnj(i), 'f', 20, 64))
-	}
+	// for i := 0; i < 1000; i++ {
+	// 	fmt.Println(strconv.Itoa(i) + ": " + strconv.FormatFloat(Log_fact(i), 'f', 20, 64) + " | " + strconv.FormatFloat(Factorial_log_rmnj(i), 'f', 20, 64))
+	// }
 }
