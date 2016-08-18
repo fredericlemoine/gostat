@@ -1,12 +1,11 @@
 /**
 This package provides Statistical functions
 */
-package main
+package gostats
 
 import (
 	crand "crypto/rand"
 	"errors"
-	"fmt"
 	"math"
 	"math/big"
 	rand "math/rand"
@@ -307,23 +306,23 @@ func Pnorm(x float64) float64 {
 	return result
 }
 
-func main() {
-	a := make([]int, 3)
-	for i := 0; i < 3; i++ {
-		a[i] = 30 - i
-	}
-	tmp := make([]int, len(a))
-	copy(tmp, a)
-	sort.Ints(tmp)
+// func main() {
+// 	a := make([]int, 3)
+// 	for i := 0; i < 3; i++ {
+// 		a[i] = 30 - i
+// 	}
+// 	tmp := make([]int, len(a))
+// 	copy(tmp, a)
+// 	sort.Ints(tmp)
 
-	for i := 0; i < 10000000; i++ {
-		r, _ := RandTo(2000)
-		fmt.Println(r)
-	}
-	// fmt.Println(Qnorm(0.002, 0, 1))
-	// fmt.Println(Pnorm(1))
+// 	for i := 0; i < 10000000; i++ {
+// 		r, _ := RandTo(2000)
+// 		fmt.Println(r)
+// 	}
+// 	// fmt.Println(Qnorm(0.002, 0, 1))
+// 	// fmt.Println(Pnorm(1))
 
-	// for i := 0; i < 1000; i++ {
-	// 	fmt.Println(strconv.Itoa(i) + ": " + strconv.FormatFloat(Log_fact(i), 'f', 20, 64) + " | " + strconv.FormatFloat(Factorial_log_rmnj(i), 'f', 20, 64))
-	// }
-}
+// 	// for i := 0; i < 1000; i++ {
+// 	// 	fmt.Println(strconv.Itoa(i) + ": " + strconv.FormatFloat(Log_fact(i), 'f', 20, 64) + " | " + strconv.FormatFloat(Factorial_log_rmnj(i), 'f', 20, 64))
+// 	// }
+// }
